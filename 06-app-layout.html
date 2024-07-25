@@ -4,11 +4,134 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Layout</title>
+    <style>
+      /* Global reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* start with some visual styles */
+
+      body {
+        font-family: sans-serif;
+        color: #343a40;
+        font-size: 24px;
+        height: 100vh;
+        text-align: center;
+        font-weight: 700;
+
+        display: grid;
+        grid-template-columns: 80px 400px 1fr 250px;
+        grid-template-rows: 80px 1fr;
+      }
+
+      nav,
+      main,
+      section,
+      aside {
+        padding-top: 24px;
+      }
+
+      nav {
+        grid-row: 1/-1;
+        background-color: #343a40;
+        color: #ffffff;
+      }
+
+      menu {
+        grid-column: 2/-1;
+        background-color: #7048e8;
+        padding: 0 40px;
+
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      button {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 700;
+        background-color: #5f3dc4;
+        border: none;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 8px 12px;
+      }
+
+      /* CSS-TRICK: putting last item of flex box
+      to the very end of the container. we can not do it with 
+      justify-content property of parent container.*/
+
+      button:last-child {
+        background-color: #d6336c;
+        margin-left: auto;
+      }
+
+      /*CSS-TRICK creating space between section items with
+      flex box so that we donot have to remove the margin-bottom
+      from last item manually*/
+
+      /*Limiting the ability of flex box to over grow from its
+      container by using overflow: scroll. it wll activate the default behaviour of
+      flex items to shrink. We can stop shrinking by putting flex shrink to 0 on every 
+      flex-item.*/
+      section {
+        background-color: #e9ecef;
+        padding: 40px;
+
+        /*overflow : how elements that don't fit in container appear*/
+        /*this property has nothing to do with flex box*/
+        overflow: scroll;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /*CSS-TRICK: using flex box to align content of a 
+      div vertically and horizontally. because flex box treats
+      test as a flex item*/
+
+      .email {
+        background-color: #adb5bd;
+        height: 96px;
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      aside {
+        background-color: #e9ecef;
+      }
+    </style>
   </head>
   <body>
     <nav>Nav</nav>
-    <menu>Menu</menu>
-    <section>Inbox</section>
+    <menu>
+      <button>New</button>
+      <button>Reply</button>
+      <button>Forward</button>
+      <button>Mark unread</button>
+
+      <button>Trash</button>
+    </menu>
+    <section>
+      <div class="email">Email 1</div>
+      <div class="email">Email 2</div>
+      <div class="email">Email 3</div>
+      <div class="email">Email 4</div>
+      <div class="email">Email 5</div>
+      <div class="email">Email 6</div>
+      <div class="email">Email 7</div>
+      <div class="email">Email 8</div>
+      <div class="email">Email 9</div>
+      <div class="email">Email 10</div>
+    </section>
     <main>Email view</main>
     <aside>Additional information</aside>
   </body>
